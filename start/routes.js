@@ -12,16 +12,13 @@
 | http://adonisjs.com/docs/4.0/routing
 |
 */
-const Database = use('Database')
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
 
-Route.get('/', async () => {
-  return await Database.table('users').select('*')
-})
 
 Route.group(() => {
-  Route.post('auth/sign-up', 'UserController.register')
+  Route.post('auth/sign-up', 'AuthController.register')
+  Route.post('auth/sign-in', 'AuthController.login')
 }).prefix('/api/v0')
